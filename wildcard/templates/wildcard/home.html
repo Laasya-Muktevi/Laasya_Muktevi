@@ -1,33 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Laasya CRM</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-          
-          </ul>
-        
-        </div>
-      </nav>
+    
     <title>Wildcard Home</title>
 </head>
 <body>
-    <h1>Contacts</h1>
-    <p>
-        Chaitanya, nuh chesindi correct eh na???
-    </p>
-    <ul>
-        {% for card in cards %}
-        <li>{{ card.card_name }} - {{ card.card_email }} - {{ card.card_phone }}</li>
-        {% empty %}
-        <li>No contacts available.</li>
-        {% endfor %}
-    </ul>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Laasya CRM</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h1>Contacts</h1>
+        <a href="/" class="btn btn-primary mb-3">Create New Card</a>
+
+        <ul class="list-group">
+            {% for card in cards %}
+            <li class="list-group-item">
+                {{ card.card_name }} - {{ card.card_email }} - {{ card.card_phone }}
+            </li>
+            {% empty %}
+            <li class="list-group-item">No contacts available.</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <p></p>
+    <footer>
+      &copy Laasya Priya Muktevi
+    </footer>
+
 </body>
 </html>

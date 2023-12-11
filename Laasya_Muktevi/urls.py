@@ -20,5 +20,4 @@ from wildcard import views
 
 urlpatterns = [
     path('', views.wildcard_home, name='wildcard_home'),
-    # Add other URL patterns here for creating, updating, and deleting contact cards
 ]
