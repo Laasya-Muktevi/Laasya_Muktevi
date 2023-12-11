@@ -20,4 +20,5 @@ from wildcard import views
 
 urlpatterns = [
     path('', views.wildcard_home, name='wildcard_home'),
+    path('create/', views.create_contact_card, name='create_contact_card'),
 ]
