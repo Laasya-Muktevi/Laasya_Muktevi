@@ -41,3 +41,11 @@ def update_contact_card(request, card_id):
         form = ContactCardForm(instance=card)
 
     return render(request, 'wildcard/update_contact_card.html', {'form': form, 'card_id': card_id})
+
+def delete_contact_card(request, card_id):
+    card = get_object_or_404(ContactCard, pk=card_id)
+    if request.method == 'POST':
+        card.delete()
+        return redirect('wildcard_home')
+
+    return render(request, 'wildcard/delete_contact_card.html', {'card': card})

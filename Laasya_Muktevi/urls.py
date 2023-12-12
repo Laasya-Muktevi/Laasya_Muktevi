@@ -23,4 +23,5 @@ urlpatterns = [
     path('create/', views.create_contact_card, name='create_contact_card'),
     path('card_info/<int:card_id>/', views.card_info, name='card_info'),
     path('edit/<int:card_id>/', views.update_contact_card, name='update_contact_card'),
+    path('delete/<int:card_id>/', views.delete_contact_card, name='delete_contact_card'),
 ]
