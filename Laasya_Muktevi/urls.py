@@ -22,5 +22,5 @@ urlpatterns = [
     path('', views.wildcard_home, name='wildcard_home'),
     path('create/', views.create_contact_card, name='create_contact_card'),
     path('card_info/<int:card_id>/', views.card_info, name='card_info'),
+    path('edit/<int:card_id>/', views.update_contact_card, name='update_contact_card'),
 ]
-

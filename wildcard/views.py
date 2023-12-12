@@ -10,7 +10,7 @@ def wildcard_home(request):
 class ContactCardForm(ModelForm):
     class Meta:
         model = ContactCard
-        fields = ['card_name', 'card_email', 'card_phone', 'message']  # Include 'message' field
+        fields = ['card_name', 'card_email', 'card_phone', 'message']
 
 def create_contact_card(request):
     if request.method == 'POST':
@@ -29,3 +29,15 @@ def create_contact_card(request):
 def card_info(request, card_id):
     card = get_object_or_404(ContactCard, pk=card_id)
     return render(request, 'wildcard/card_info.html', {'card': card})
+
+def update_contact_card(request, card_id):
+    card = get_object_or_404(ContactCard, pk=card_id)
+    if request.method == 'POST':
+        form = ContactCardForm(request.POST, instance=card)
+        if form.is_valid():
+            form.save()
+            return redirect('wildcard_home')
+    else:
+        form = ContactCardForm(instance=card)
+
+    return render(request, 'wildcard/update_contact_card.html', {'form': form, 'card_id': card_id})
