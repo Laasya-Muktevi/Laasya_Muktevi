@@ -6,33 +6,62 @@
     <title>Create Contact Card</title>
 
     <style>
-        .container {
-            max-width: 500px;
-        }
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        .form-control {
-            box-shadow: none;
-        }
-        .btn-primary, .btn-secondary {
-            width: 100%;
-            margin-top: 10px;
-        }
-        footer {
-            text-align: center;
-            margin-top: 20px;
-            padding: 10px 0;
-            font-size: 0.8em;
-            color: #777;
-        }
         body {
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            background-color: #e9ecef;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
         .container {
-            flex: 1;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-control {
+            box-shadow: none;
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+            height: 45px;
+        }
+        .form-control:focus {
+            border-color: #80bdff;
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+        }
+        .btn-primary, .btn-secondary {
+            width: calc(50% - 10px);
+            margin-top: 15px;
+            font-size: 1rem;
+            padding: 10px;
+        }
+        .btn-secondary {
+            margin-left: 20px;
+        }
+        footer {
+            text-align: center;
+            margin-top: auto;
+            padding: 20px 0;
+            font-size: 0.9em;
+            background-color: #f8f9fa;
+            color: #6c757d;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            color: #333;
+        }
+        .alert {
+            font-size: 0.85em;
+        }
+        .navbar {
+            margin-bottom: 40px;
         }
     </style>
 </head>
@@ -50,11 +79,11 @@
         </div>
     </nav>
 
-    <div class="container mt-4">
+    <div class="container">
         <h1>Create New Contact Card</h1>
         <form method="post">
             {% csrf_token %}
-            <div class<div class="form-group">
+            <div class="form-group">
                 {{ form.card_name.label_tag }} {{ form.card_name }}
                 {% if form.card_name.errors %}
                     <div class="alert alert-danger">
@@ -72,11 +101,27 @@
             </div>
             <div class="form-group">
                 {{ form.card_phone.label_tag }} {{ form.card_phone }}
+                {% if form.card_phone.errors %}
+                    <div class="alert alert-danger">
+                        {{ form.card_phone.errors.as_text }}
+                    </div>
+                {% endif %}
             </div>
-            <button type="submit" class="btn btn-primary">Create Card</button>
-            <a href="{% url 'wildcard_home' %}" class="btn btn-secondary">Cancel</a>
+            <div class="form-group">
+                {{ form.message.label_tag }} {{ form.message }}
+                {% if form.message.errors %}
+                    <div class="alert alert-danger">
+                        {{ form.message.errors.as_text }}
+                    </div>
+                {% endif %}
+
+            <div class="form-actions d-flex justify-content-between">
+                <button type="submit" class="btn btn-primary">Create Card</button>
+                <a href="{% url 'wildcard_home' %}" class="btn btn-secondary">Cancel</a>
+            </div>
         </form>
     </div>
+
     <footer>
         &copy; Laasya Priya Muktevi
     </footer>

@@ -51,6 +51,30 @@
           line-height: 1.5;
           border-radius: .2rem;
       }
+      .card-custom {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card-body-custom {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .card-action {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+        .btn-small {
+            padding: .25rem .5rem;
+            font-size: .875rem;
+            line-height: 1.5;
+            border-radius: .2rem;
+        }
     </style>
 </head>
 
@@ -68,26 +92,32 @@
     </nav>
 
     <div class="container">
-      <h1>Contacts</h1>
-      <a href="/create/" class="btn btn-primary mb-3">Create New Card</a>
+        <h1>Contacts</h1>
+        <a href="/create/" class="btn btn-primary mb-3">Create New Card</a>
 
-      <ul class="list-group">
-          {% for card in cards %}
-          <li class="list-group-item">
-              <div class="contact-details">
-                  {{ card.card_name }}<br>
-                  {{ card.card_email }}<br>
-                  {{ card.card_phone }}
-              </div>
-              <div>
-                  <a href="/edit/{{ card.id }}/" class="btn btn-small btn-outline-secondary">Edit</a>
-                  <a href="/delete/{{ card.id }}/" class="btn btn-small btn-outline-danger">Delete</a>
-              </div>
-          </li>
-          {% empty %}
-          <li class="list-group-item">No contacts available.</li>
-          {% endfor %}
-      </ul>
+        <div class="row">
+            {% for card in cards %}
+            <div class="col-md-4">
+                <div class="card-custom">
+                    <div class="card-body-custom">
+                        <h5 class="card-title">{{ card.card_name }}</h5>
+                        <p class="card-text">{{ card.card_email }}</p>
+                        <p class="card-text">{{ card.card_phone }}</p>
+                        <div class="card-action">
+                            <!-- View Button -->
+                            <a href="{% url 'card_info' card.id %}" class="btn btn-small btn-outline-primary">View</a>
+                            <a href="/edit/{{ card.id }}/" class="btn btn-small btn-outline-secondary">Edit</a>
+                            <a href="/delete/{{ card.id }}/" class="btn btn-small btn-outline-danger">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <p>No contacts available.</p>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 
     <footer>

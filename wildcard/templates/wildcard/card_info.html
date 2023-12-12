@@ -1,0 +1,101 @@
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Contact Details</title>
+    <style>
+        .container {
+            max-width: 700px;
+            margin-top: 50px;
+        }
+        .contact-card {
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            border-radius: 5px; 
+        }
+        .contact-card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+        .contact-header {
+            padding: 2px 16px;
+            background: #007bff;
+            color: white;
+            border-radius: 5px 5px 0 0;
+        }
+        .contact-body {
+            padding: 10px 16px;
+        }
+        .contact-details {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px 0;
+            font-size: 0.8em;
+            color: #777;
+        }
+        .btn-back {
+            margin-top: 20px;
+        }
+        .label {
+            font-weight: bold;
+        }
+        .contact-actions {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .btn-action {
+            padding: 5px 10px;
+            font-size: 16px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Laasya CRM</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="contact-card">
+            <div class="contact-header">
+                <h2>Contact Details</h2>
+            </div>
+            <div class="contact-body">
+                <div class="contact-details">
+                    <p><span class="label">Name:</span> {{ card.card_name }}</p>
+                    <p><span class="label">Email:</span> {{ card.card_email }}</p>
+                    <p><span class="label">Phone:</span> {{ card.card_phone|default:"N/A" }}</p>
+                    <p><span class="label">Message:</span> {{ card.message|default:"No Message" }}</p>
+                </div>
+                <div class="contact-actions">
+                    <a href="{% url 'wildcard_home' %}" class="btn btn-outline-primary btn-action">Go Back</a>
+                    <a href="/edit/{{ card.id }}/" class="btn btn-outline-secondary btn-action">Edit</a>
+                    <a href="/delete/{{ card.id }}/" class="btn btn-outline-danger btn-action">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; Laasya Priya Muktevi
+    </footer>
+
+</body>
+</html>
